@@ -1,17 +1,30 @@
 # Geo-Redundant-Azure-App-Deployment-with-Terraform
 
-This Terraform project automates the deployment of a geo-redundant Azure environment including resource groups, app service plans, web apps, application insights, and Traffic Manager for global load balancing.
+Project Overview
+This Terraform configuration deploys a geo-redundant Azure App Service across two regions: West US 2 (primary) and East US 2 (secondary). The deployment includes:
 
-Features
-Creates primary and secondary Azure resource groups
+Resource groups, App Service Plans, App Services, and Application Insights in each region.
 
-Deploys App Service Plans and App Services in both locations
+An Azure Traffic Manager Profile configured with Priority routing to direct traffic to the primary app by default.
 
-Configures Application Insights for monitoring
+Automatic failover to the secondary app if the primary becomes unavailable.
 
-Sets up Azure Traffic Manager for global traffic distribution
+How Geo-Redundancy Works
+The app (hosting the resume or any web content) is deployed in two geographically separated Azure regions for high availability.
 
-Implements basic network security with NSGs (if applicable)
+Azure Traffic Manager monitors the health of the primary app.
+
+If the primary app in West US 2 fails or becomes unreachable, Traffic Manager automatically routes users to the secondary app in East US 2.
+
+This failover mechanism ensures your resume app remains accessible with minimal downtime.
+
+Benefits
+Improved reliability and availability of your web app.
+
+Protection against regional outages or failures.
+
+Seamless user experience with automatic routing based on app health.
+
 
 Prerequisites
 Azure subscription with sufficient quotas
